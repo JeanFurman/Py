@@ -1,0 +1,59 @@
+use base_de_dados;
+
+show tables;
+
+describe users;
+
+insert into users
+(first_name, last_name, email, password_hash) values
+('jean', 'sousa', 'jean@email.com', '123');
+
+select * from users as u;
+
+select u.email as e, id as i from users as u;
+
+select * from users where id=110;
+
+select * from users where first_name='jean';
+
+select * from users where id >=100;
+
+select * from users where id < 150 and first_name='jean';
+
+select * from users where id between 3 and 15;
+
+select * from users where id in (110, 115, 120, 125, 130, 111000, 5525);
+
+select * from users where first_name like '%a';
+
+select * from users where first_name like 'je%';
+
+select * from users where first_name like 'j_a_';
+
+select id, first_name, email from users where id between 100 and 150 order by id asc/desc;
+
+select id, first_name, email from users where id between 100 and 150 order by id desc limit 6,3;
+
+insert profiles (bio, description, user_id) select 
+concat('Bio de ', first_name), concat('Description de ', first_name), id from users;
+
+delete from users where id = 114;
+
+update users set first_name = 'Luiz', last_name = 'Miranda' where id between 119 and 121;
+
+select u.id as uid, p.id as pid from users as u, profiles as p where u.id = p.user_id;
+
+select u.id as uid, p.id as pid from users as inner join profiles p on u.id = p.user_id;
+
+update users set salary = select round(rand() * 10000, 2);
+
+select salary from users where salary between 1000 and 1500 order by salary asc;
+
+insert into roles (name) values ('POST'), ('PUT'), (DELETE), ('GET');
+
+insert into users_roles (user_id, role_id) values (518, 4);
+
+insert into users_roles (user_id, role_id) select id, 
+(select id from roles order by rand() limit 1) as qualquer from users;
+
+select first_name, count(id) as total from users group by first_name order by total desc;
