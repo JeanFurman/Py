@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c72e61e-0a5e-4052-b976-686fb2f0544c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/contrib/env_gen.py" beforeDir="false" afterPath="$PROJECT_DIR$/contrib/env_gen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controle_gastos/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/controle_gastos/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Django2/contrib/env_gen.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Django2/myproject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Django2/myproject/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Django2/myproject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Django2/myproject/urls.py" afterDir="false" />
-    </list>
+    <list default="true" id="2c72e61e-0a5e-4052-b976-686fb2f0544c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
