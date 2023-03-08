@@ -1,0 +1,19 @@
+python -m venv venv
+cd venv
+cd scripts
+activate
+cd ..
+cd ..
+python.exe -m pip install --upgrade pip
+pip install django
+pip install python-decouple django-extensions
+pip freeze > requirements.txt	
+
+django-admin startproject nome_projeto
+python manage.py startapp nome_app
+python manage.py migrate
+python manage.py runserver
+python manage.py createsuperuser
+python manage.py makemigrations
+
+jinja
