@@ -70,3 +70,79 @@ Live.objects.filter(title__in=words).count() // return 2
 Live.objects.filter(title__in=words).distinct()
 
 Live.objects.all().values_list('like', flat=True).order_by('-like')
+
+Programador.objects.filter(nome__iexact='Jean') //tras exatamente o valor i=ignorecase
+
+Programador.objects.filter(nome__startswith='n')//tras a primeira letra i=ignorecase
+
+Programador.objects.filter(nome__iendswith='n')//tras a ultima letra i=ignorecase
+
+Programador.objects.filter(nome__in=['jean', 'davi'])//tras os nomes (se existirem) do banco 
+
+Programador.objects.filter(salario__gt=1000)//maior que 1000 
+
+Programador.objects.filter(salario__gte=1000)//maior igual a 1000 
+
+Programador.objects.filter(salario__lt=1000)//menor que 1000 
+
+Programador.objects.filter(salario__lte=1000)//maior igual a 1000 
+
+Programador.objects.filter(empresa__isnull=True/False) retorna se o campo é nulo ou não
+
+ProgramadorLinguagem.objects.filter(programador__nome__icontains='th', linguagem__nome='Python')
+
+busca = Q(
+			Q(nome='jean') | Q(nome='davi')
+		)
+
+Programador.objects.filter(busca)
+
+busca = Q(
+			Q(nome__contains='a') & Q(salario__gt=3000)
+		)
+
+Programador.objects.filter(busca)
+
+busca = Q(
+			Q(
+
+				Q(nome__contains='a') & Q(salario__gt=3000)
+			)
+			&
+			Q(empresa__nome='Google')
+		)
+
+User.objects.get(email='jean@gmail.com')
+
+from django.db.models.aggregates import Avg, Sum, Count, Min, Max
+
+Livro.objects.aggregate(avaliacao_media=Avg('avaliacao'), preco_medio=Avg('preco'), 
+	mais_caro=Max('preco'), mais_bem_avaliado=Max('avaliacao'))
+
+Livro.objects.filter(categoria='Drama').aggregate(avaliacao_media=Avg('avaliacao'), preco_medio=Avg('preco'), 
+	mais_caro=Max('preco'), mais_bem_avaliado=Max('avaliacao'))
+
+autores = Autor.objects.annotate(nota_media=Avg('livros__avaliacao'))
+
+for autor in autores:
+	print(f'Nome: {autor.nome} - Nota média: {autor.nota_media}')
+
+autores = Autor.objects.filter(idade__gt=55).annotate(nota_media=Avg('livros__avaliacao'))
+
+for autor in autores:
+	print(f'Nome: {autor.nome} - Nota média: {autor.nota_media}')
+
+Livro.objects.values('categoria').annotate(nota_media=Avg('avaliacao'))
+
+from django.db.models import F
+
+Livro.objects.filter(categoria='Terror').update(preco=F('preco')*1.25)
+
+programadores = Programador.objects.all().select_related('empresa') //OneToOne ou ForeignKey
+
+programadores = Programador.objects.all().prefetch_related('linguagens') //ManyToMany
+
+programadores = Programador.objects.all().select_related('empresa').only('empresa__nome') // tras só o nome e economiza espaço na memoria
+
+programadores = Programador.objects.all().select_related('empresa').defer('empresa__nome')// exclui esse dado da pesquisa e economiza espaço na memoria
+

@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+{% if jogos %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nome</th>
+        <th scope="col">Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for j in jogos %}
+      <tr>
+        <td>{{j.nome}}</td>
+        <td>{{j.valor}}</td>
+        <td><a href="{% url 'urlupdate' j.id %}">Update</a></td>
+        <td><a href="{% url 'urldelete' j.id %}">X</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endif %}
+{% endblock content %}

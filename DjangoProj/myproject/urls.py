@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from myproject.core import views as v
 
 urlpatterns = [
+    path('', v.index, name='index'),
     path('admin/', admin.site.urls),
+    path('jogo/', v.formJogo, name='formjogo'),
+    path('update/<int:pk>/', v.update, name='urlupdate'),
+    path('delete/<int:pk>/', v.delete, name='urldelete')
 ]
